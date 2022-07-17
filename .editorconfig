@@ -2,7 +2,7 @@
 insert_final_newline = true
 
 # C#
-[*.{cs,cshtml}]
+[*.{cs,cshtml,xaml}]
 indent_style = tab
 tab_width = 4
 guidelines = 80, 140

@@ -1,13 +1,13 @@
-# Dive Buddies | Template
+# Dive Buddies | .NET MAUI Application
 
-A template repository for any projects. This includes any configuration files, workflow files or scripts that can be used throughout the organisation.
+The application's UI built using .NET MAUI.
 
 ## Directory Structure
 
 ~~~
-buddies-blue/template/
+buddies-blue/maui-app/
 ├─ src/
-   └─ # Source code
+   └─ Buddies.App
 ├─ tests/
    └─ # Unit and integration tests
 ├─ tools/
