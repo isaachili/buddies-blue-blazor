@@ -55,6 +55,9 @@
 		<MauiXaml Update="Resources\Templates\ControlGroupTemplate.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</MauiXaml>
+		<MauiXaml Update="Resources\Templates\WavesTemplate.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 	</ItemGroup>
 
 </Project>
