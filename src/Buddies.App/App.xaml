@@ -9,8 +9,14 @@
 		<ResourceDictionary>
 
 			<ResourceDictionary.MergedDictionaries>
+				
+				<!-- Styles -->
 				<ResourceDictionary Source="Resources/Styles/Colors.xaml" />
 				<ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+
+				<!-- Templates -->
+				<ResourceDictionary Source="Resources/Templates/ControlGroupTemplate.xaml" />
+
 			</ResourceDictionary.MergedDictionaries>
 
 			<ControlTemplate x:Key="WavesControlTemplate">
@@ -53,7 +59,7 @@
 						</ContentPresenter>
 					</Grid>
 				</ScrollView>
-			</ControlTemplate>
+			</ControlTemplate>			
 		</ResourceDictionary>
 	</Application.Resources>	
 </Application>
