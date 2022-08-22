@@ -1,0 +1,56 @@
+﻿$wave-color: #3396F3;
+$wave-height: 3rem;
+$wave-high-opacity: 0.35;
+$wave-low-opacity: 0.25;
+
+// Normalize
+html, body {
+	min-height: 100vh;
+	max-height: 100vh;
+	min-width: 100vw;
+	max-width: 100vw;
+	margin: 0;
+	padding: 0;
+}
+
+// Layout
+#app {
+	display: flex;
+	flex-flow: column nowrap;
+	min-height: inherit;
+
+	header {
+		flex: 0 1 auto;
+	}
+
+	main {
+		flex: 1 0 auto;
+	}
+}
+
+// Waves
+.waves {
+	position: relative;
+	height: $wave-height;
+
+	.wave-high, .wave-low {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		fill: $wave-color;
+	}
+
+	.wave-high {
+		opacity: $wave-high-opacity;
+	}
+
+	.wave-low {
+		opacity: $wave-low-opacity;
+	}
+}
+
+// Content
+.content {
+	background: linear-gradient(to bottom, rgba($wave-color, mix-opacity($wave-high-opacity, $wave-low-opacity)) 25%, $wave-color);
+}

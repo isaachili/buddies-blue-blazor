@@ -3,8 +3,6 @@
 	<PropertyGroup>
 		<TargetFrameworks>net6.0-android;net6.0-ios</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net6.0-windows10.0.19041.0</TargetFrameworks>
-		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
-		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
 		<OutputType>Exe</OutputType>
 		<RootNamespace>Buddies.App</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -13,10 +11,10 @@
 		<EnableDefaultCssItems>false</EnableDefaultCssItems>
 
 		<!-- Display name -->
-		<ApplicationTitle>Buddies.App</ApplicationTitle>
+		<ApplicationTitle>Buddies</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.buddies.app</ApplicationId>
+		<ApplicationId>blue.buddies.app</ApplicationId>
 		<ApplicationIdGuid>C49B7F31-28FC-408E-9EC5-831858F20685</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -45,6 +43,11 @@
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<!-- Packages -->
+	<ItemGroup>
+	  <PackageReference Include="BuildWebCompiler" Version="1.12.405" />
 	</ItemGroup>
 
 </Project>

@@ -1,17 +1,36 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-	<div class="sidebar">
-		<NavMenu />
-	</div>
+@*Navigation Bar*@
+<NavMenu />
 
-	<main>
-		<div class="top-row px-4">
-			<a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-		</div>
+@*Waves*@
+<div class="waves">
 
-		<article class="content px-4">
-			@Body
-		</article>
-	</main>
+    @*High Wave*@
+    <svg version="1.1" class="wave-high" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" viewBox="0 0 1024 100" xml:space="preserve">
+    
+        <path d="M1024.06189,31.5c-64.00037,0-64.00037-24-128.00073-24c-63.99945,0-63.99945,24-127.9989,24
+	        c-63.99866,0-63.99866-24-127.99738-24c-63.99951,0-63.99951,24-127.99902,24c-63.99683,0-63.99683-24-127.99365-24
+	        s-63.99683,24-127.99365,24c-63.99951,0-63.99951-24-127.99896-24c-63.99872,0-63.99872,24-127.99744,24
+	        c-0.00336,0-0.00659-0.00006-0.00995-0.00006V100h1023.99994V31.49994C1024.06873,31.49994,1024.06531,31.5,1024.06189,31.5z" />
+
+    </svg>
+
+    @*Low Wave*@
+    <svg version="1.1" class="wave-low" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" viewBox="0 0 1024 100" xml:space="preserve">
+    
+        <path d="M1024.07214,100H0.0722V17.5c63.99684,0,63.99684,24,127.99367,24c63.9995,0,63.9995-24,127.99898-24
+	        c63.99872,0,63.99872,24,127.99744,24c63.99942,0,63.99942-24,127.99887-24c64.00037,0,64.00037,24,128.00073,24
+	        c63.99976,0,63.99976-24,127.99945-24c64.00275,0,64.00275,24,128.00543,24s64.00275-24,128.00537-24V100z"/>
+
+    </svg>
 </div>
+
+@*Content*@
+<main class="content">
+    <article>
+        @Body
+    </article>
+</main>

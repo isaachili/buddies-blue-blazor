@@ -1,0 +1,16 @@
+[
+  {
+	"inputFile": "wwwroot/styles/core.scss",
+	"outputFile": "wwwroot/css/app.css",
+	"minify": {
+	  "enabled": true,
+	  "outputMode": "singleLine",
+	  "colorNames": "hex",
+	  "commentMode": "none"
+	},
+	"options": {
+	  "sourceMap": true,
+	  "outputStyle": "compressed"
+	}
+  }
+]

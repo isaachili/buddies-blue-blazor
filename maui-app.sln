@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32708.82
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{728BDEB6-A216-4D23-9B4B-52734DD2820B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Buddies.App", "src\Buddies.App\Buddies.App.csproj", "{B0C90AE9-4B05-4BAE-845E-F9BF9E74588D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Buddies.App", "src\Buddies.App\Buddies.App.csproj", "{B0C90AE9-4B05-4BAE-845E-F9BF9E74588D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
