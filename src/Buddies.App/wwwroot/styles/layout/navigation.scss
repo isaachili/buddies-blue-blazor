@@ -1,9 +1,43 @@
 ﻿// Navigation Menu
 .nav-menu {
+	padding: 0.5rem 0.5rem 0;
 
 	// Navigation Bar
 	.nav-menu-bar {
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
 		height: 2rem;
 		min-height: 2rem;
+
+		// Back Button
+		.nav-back {
+			margin-right: 0.2rem;
+
+			.material-symbols-outlined {
+				vertical-align: sub;
+			}
+		}
+
+		// Title
+		.nav-title {
+			flex: 0 1 auto;
+			font-weight: bold;
+			font-size: 1.2rem;
+			text-transform: uppercase;
+		}
+
+		// Action Bar
+		.nav-action-bar {
+			flex: 1 0 auto;
+			display: flex;
+			flex-flow: row nowrap;
+			align-items: center;
+			justify-content: flex-end;
+
+			.material-symbols-outlined {
+				vertical-align: sub;
+			}
+		}
 	}
 }
