@@ -2,7 +2,8 @@
 @import "functions/color-mixing.scss";
 
 // Assets
-@import "assets/fonts.scss";
+@import "assets/fonts.scss"
+	, "assets/colors.scss";
 
 // Layout
 @import "layout/main.scss"

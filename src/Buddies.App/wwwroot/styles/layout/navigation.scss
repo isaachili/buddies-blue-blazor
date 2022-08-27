@@ -1,4 +1,6 @@
-﻿// Navigation Menu
+﻿@import "../assets/colors.scss";
+
+// Navigation Menu
 .nav-menu {
 	padding: 0.5rem 0.5rem 0;
 
@@ -9,15 +11,6 @@
 		align-items: center;
 		height: 2rem;
 		min-height: 2rem;
-
-		// Back Button
-		.nav-back {
-			margin-right: 0.2rem;
-
-			.material-symbols-outlined {
-				vertical-align: sub;
-			}
-		}
 
 		// Title
 		.nav-title {
@@ -35,8 +28,49 @@
 			align-items: center;
 			justify-content: flex-end;
 
+			// Action Buttons
+			.nav-action-button {
+
+				// Last Action Button
+				&:last-of-type {
+					margin-right: 0;
+				}
+			}
+		}
+
+		// Action Buttons
+		.nav-action-button {
+			$nav-action-color: black;
+			color: $nav-action-color;
+			margin-right: 0.2rem;
+			-webkit-tap-highlight-color: transparent;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			user-select: none;
+			text-decoration: none;
+
+			// Visited
+			&:visited {
+				color: $nav-action-color;
+			}
+
+			// Hover
+			&:hover {
+				color: $primary-color;
+			}
+
+			// Icon
 			.material-symbols-outlined {
 				vertical-align: sub;
+			}
+
+			// Title
+			.title {
+				font-size: 0.7rem;
+				font-weight: lighter;
+				text-transform: uppercase;
+				vertical-align: text-top;
+				margin-right: 0.5rem;
 			}
 		}
 	}

@@ -1,4 +1,6 @@
-﻿$wave-color: #3396F3;
+﻿@import "../assets/colors.scss";
+
+$wave-color: $primary-color;
 $wave-height: 3rem;
 $wave-high-opacity: 0.35;
 $wave-low-opacity: 0.25;
