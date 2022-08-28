@@ -1,5 +1,25 @@
 ﻿@using Buddies.Modules.ActionBar
+@implements IDisposable
 @inject IActionBarServiceHandler Handler
+@inject NavigationManager NavigationManager
+
+@code {
+    protected override void OnInitialized()
+    {
+        NavigationManager.LocationChanged += OnLocationChanged;
+        base.OnInitialized();
+    }
+
+    private void OnLocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        StateHasChanged();
+    }
+
+    void IDisposable.Dispose()
+    {
+        NavigationManager.LocationChanged -= OnLocationChanged;
+    }
+}
 
 <header class="nav-menu">
 
@@ -18,12 +38,19 @@
         <div class="nav-action-bar">
 
             @*Control Buttons*@
-            @foreach (var control in Handler.Create().GetControls())
-            {
-                <a class="nav-action-button" href="_blank">
-                    <span class="material-symbols-outlined">@control.Icon</span>
-                    <span class="title">@control.Title</span>
-                </a>
+            @{
+                var actionBarService = Handler.Create();
+
+                if (actionBarService is not null)
+                {
+                    foreach (var control in actionBarService.GetControls())
+                    {
+                        <a class="nav-action-button @string.Join(' ', control.Styles)" href="@control.Path">
+                            <span class="material-symbols-outlined">@control.Icon</span>
+                            <span class="title">@control.Title</span>
+                        </a>
+                    }
+                }
             }
 
         </div>

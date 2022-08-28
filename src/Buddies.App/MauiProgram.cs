@@ -1,4 +1,5 @@
-﻿using Buddies.App.Services.ActionBar;
+﻿using Buddies.App.Pages.Logs;
+using Buddies.App.Services.ActionBar;
 using Buddies.Modules.ActionBar.Extensions;
 using IndexPage = Buddies.App.Pages.Index;
 
@@ -21,6 +22,7 @@ public static class MauiProgram
 		_ = builder.Services.AddActionBarServices(h =>
 		{
 			h.Register<IndexPage, IndexActionBarService>();
+			h.Register<Log, LogActionBarService>();
 		});
 		_ = AddDebugServices(builder.Services);
 

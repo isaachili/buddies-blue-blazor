@@ -9,8 +9,8 @@ internal class IndexActionBarService : IActionBarService
 	{
 		return new[]
 		{
-			new ActionBarControl("Add Log", "add"),
-			new ActionBarControl("Settings", "settings"),
+			new ActionBarControl("Add Log", "add", "/log/"),
+			new ActionBarControl("Settings", "settings", "_blank"),
 		};
 	}
 }

@@ -59,6 +59,11 @@
 				color: $primary-color;
 			}
 
+			// Danger
+			&.danger {
+				color: $danger-color;
+			}
+
 			// Icon
 			.material-symbols-outlined {
 				vertical-align: sub;
