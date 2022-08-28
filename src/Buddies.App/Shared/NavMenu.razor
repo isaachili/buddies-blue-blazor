@@ -1,4 +1,7 @@
-﻿<header class="nav-menu">
+﻿@using Buddies.Modules.ActionBar
+@inject IActionBarServiceHandler Handler
+
+<header class="nav-menu">
 
     @*Navigation Bar*@
     <div class="nav-menu-bar">
@@ -14,17 +17,14 @@
         @*Action Bar*@
         <div class="nav-action-bar">
 
-            @*Add Button*@
-            <a class="nav-action-button" href="_blank">
-                <span class="material-symbols-outlined">add</span>
-                <span class="title">Add Log</span>
-            </a>
-
-            @*Settings Button*@
-            <a class="nav-action-button" href="_blank">
-                <span class="material-symbols-outlined">settings</span>
-                <span class="title">Settings</span>
-            </a>
+            @*Control Buttons*@
+            @foreach (var control in Handler.Create().GetControls())
+            {
+                <a class="nav-action-button" href="_blank">
+                    <span class="material-symbols-outlined">@control.Icon</span>
+                    <span class="title">@control.Title</span>
+                </a>
+            }
 
         </div>
     </div>

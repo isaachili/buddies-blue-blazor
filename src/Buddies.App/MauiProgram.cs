@@ -1,4 +1,8 @@
-﻿namespace Buddies.App;
+﻿using Buddies.App.Services.ActionBar;
+using Buddies.Modules.ActionBar.Extensions;
+using IndexPage = Buddies.App.Pages.Index;
+
+namespace Buddies.App;
 
 public static class MauiProgram
 {
@@ -14,6 +18,10 @@ public static class MauiProgram
 
 		// Add services
 		_ = builder.Services.AddMauiBlazorWebView();
+		_ = builder.Services.AddActionBarServices(h =>
+		{
+			h.Register<IndexPage, IndexActionBarService>();
+		});
 		_ = AddDebugServices(builder.Services);
 
 		return builder.Build();
