@@ -5,6 +5,8 @@ namespace Buddies.App.Services.ActionBar;
 
 internal class IndexActionBarService : IActionBarService
 {
+	public bool ShowBackButton => false;
+
 	public IEnumerable<ActionBarControl> GetControls()
 	{
 		return new[]

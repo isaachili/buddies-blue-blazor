@@ -3,6 +3,10 @@
 @inject IActionBarServiceHandler Handler
 @inject NavigationManager NavigationManager
 
+@{
+    var actionBarService = Handler.Create();
+}
+
 @code {
     protected override void OnInitialized()
     {
@@ -27,9 +31,12 @@
     <div class="nav-menu-bar">
 
         @*Back Button*@
-        <a class="nav-action-button" href="javascript:history.back()">
-            <span class="material-symbols-outlined">arrow_back</span>
-        </a>
+        @if (actionBarService is { ShowBackButton: true })
+        {
+            <a class="nav-action-button" href="javascript:history.back()">
+                <span class="material-symbols-outlined">arrow_back</span>
+            </a>
+        }
 
         @*Page Title*@
         <span class="nav-title">Buddies</span>
@@ -39,8 +46,6 @@
 
             @*Control Buttons*@
             @{
-                var actionBarService = Handler.Create();
-
                 if (actionBarService is not null)
                 {
                     foreach (var control in actionBarService.GetControls())
