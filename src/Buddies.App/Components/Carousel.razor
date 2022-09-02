@@ -1,0 +1,42 @@
+﻿@using Microsoft.AspNetCore.Components.Rendering
+
+@code {
+
+    public class Page
+    {
+        public string Title { get; set; }
+
+        public Type ComponentType { get; init; }
+    }
+
+    public class Page<TComponent> : Page
+    {
+        public Page()
+        {
+            ComponentType = typeof(TComponent);
+        }
+    }
+
+    [Parameter]
+    public IReadOnlyCollection<Page> Pages { get; set; }
+}
+
+@foreach (var carouselPage in Pages)
+{
+    RenderFragment fragment = builder =>
+    {
+        builder.OpenComponent(0, carouselPage.ComponentType);
+        builder.CloseComponent();
+    };
+
+    @*Carousel Page*@
+    <div class="carousel-page">
+
+        @*Title*@
+        <h1 class="carousel-page-title">@carouselPage.Title</h1>
+
+        @*Render Component Fragment*@
+        @fragment
+
+    </div>
+}
