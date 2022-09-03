@@ -6,11 +6,11 @@
 	white-space: nowrap;
 	scroll-snap-type: x mandatory;
 	scroll-snap-stop: always;
-	scroll-snap-align: center;
 	scroll-behavior: smooth;
 
 	// Carousel Page
 	.carousel-page {
+		scroll-snap-align: center;
 		min-width: 100%;
 		max-width: 100%;
 	}
