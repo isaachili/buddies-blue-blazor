@@ -17,14 +17,39 @@
         }
     }
 
+    private string CarouselId { get; } = Guid.NewGuid().ToString("N");
+
+    [Inject]
+    public IJSRuntime Runtime { get; set; }
+
     [Parameter]
-    public IReadOnlyCollection<Page> Pages { get; set; }
+    public IEnumerable<Page> Pages { get; set; }
+
+    [Parameter]
+    public int CurrentIndex { get; set; }
+
+    private string CreatePageId(string carouselId, int index)
+    {
+        return $"{carouselId}-p{index}";
+    }
+
+    private async Task ScrollToPage(string carouselId, int index)
+    {
+        // Update page index
+        CurrentIndex = index;
+
+        // Scroll to page
+        await Runtime.InvokeVoidAsync("scrollIntoView", CreatePageId(carouselId, index));
+    }
 }
 
 <div class="carousel">
 
-    @foreach (var carouselPage in Pages)
+    @for (int i = 0; i < Pages.Count(); i++)
     {
+        int pageIndex = i;
+        var carouselPage = Pages.ElementAt(pageIndex);
+
         RenderFragment fragment = builder =>
         {
             builder.OpenComponent(0, carouselPage.ComponentType);
@@ -32,7 +57,7 @@
         };
 
         @*Carousel Page*@
-        <div class="carousel-page">
+        <div id="@CreatePageId(CarouselId, pageIndex)" class="carousel-page">
 
             @*Title*@
             <h1 class="carousel-page-title">@carouselPage.Title</h1>
@@ -46,9 +71,13 @@
 </div>
 
 <div class="carousel-indicators">
-    @foreach (var carouselPage in Pages)
+    @for (int i = 0; i < Pages.Count(); i++)
     {
+        int indicatorIndex = i;
+
         @*Carousel Indicator*@
-        <span class="material-symbols-outlined">radio_button_unchecked</span>
+        <span class="material-symbols-outlined" @onclick="_ => ScrollToPage(CarouselId, indicatorIndex)">
+            @(i == CurrentIndex ? "radio_button_checked" : "radio_button_unchecked")
+        </span>
     }
 </div>
