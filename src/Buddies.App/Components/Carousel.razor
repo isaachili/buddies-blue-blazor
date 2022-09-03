@@ -21,22 +21,26 @@
     public IReadOnlyCollection<Page> Pages { get; set; }
 }
 
-@foreach (var carouselPage in Pages)
-{
-    RenderFragment fragment = builder =>
+<div class="carousel">
+
+    @foreach (var carouselPage in Pages)
     {
-        builder.OpenComponent(0, carouselPage.ComponentType);
-        builder.CloseComponent();
-    };
+        RenderFragment fragment = builder =>
+        {
+            builder.OpenComponent(0, carouselPage.ComponentType);
+            builder.CloseComponent();
+        };
 
-    @*Carousel Page*@
-    <div class="carousel-page">
+        @*Carousel Page*@
+        <div class="carousel-page">
 
-        @*Title*@
-        <h1 class="carousel-page-title">@carouselPage.Title</h1>
+            @*Title*@
+            <h1 class="carousel-page-title">@carouselPage.Title</h1>
 
-        @*Render Component Fragment*@
-        @fragment
+            @*Render Component Fragment*@
+            @fragment
 
-    </div>
-}
+        </div>
+    }
+
+</div>

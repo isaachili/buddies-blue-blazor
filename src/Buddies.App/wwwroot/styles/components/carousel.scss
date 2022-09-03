@@ -1,0 +1,10 @@
+﻿.carousel {
+	display: flex;
+	flex-flow: row nowrap;
+	overflow: hidden;
+
+	// Carousel Page
+	.carousel-page {
+		min-width: 100%;
+	}
+}
