@@ -1,10 +1,15 @@
 ﻿.carousel {
 	display: flex;
 	flex-flow: row nowrap;
-	overflow: hidden;
+	overflow: scroll hidden;
+	scroll-snap-type: x mandatory;
+	scroll-snap-stop: always;
+	scroll-snap-align: start;
+	scroll-behavior: smooth;
 
 	// Carousel Page
 	.carousel-page {
 		min-width: 100%;
+		max-width: 100%;
 	}
 }
