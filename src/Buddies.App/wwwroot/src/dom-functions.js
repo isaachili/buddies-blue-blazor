@@ -20,7 +20,13 @@ function observeInteraction(id) {
 			return;
 		}
 
-		// TODO - Dispatch event?
+		$event = new Event("carouselpagescroll", {
+			bubbles: true,
+			target: entries[0].target,
+		});
+
+		// Dispatch event
+		entries[0].target.dispatchEvent($event);
 	}, {
 		threshold: 1
 	});

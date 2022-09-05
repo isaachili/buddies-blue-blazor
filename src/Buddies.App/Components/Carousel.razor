@@ -60,10 +60,15 @@
         return $"{CarouselId}-p{index}";
     }
 
-    private async Task ScrollToPage(int index)
+    private async Task ScrollToPage(int index, bool shouldScroll = true)
     {
         // Update page index
         CurrentIndex = index;
+
+        if (!shouldScroll)
+        {
+            return;
+        }
 
         // Scroll to page
         await Runtime.InvokeVoidAsync("scrollIntoView", CreatePageId(index));
@@ -84,7 +89,7 @@
         };
 
         @*Carousel Page*@
-        <div id="@CreatePageId(pageIndex)" class="carousel-page">
+        <div id="@CreatePageId(pageIndex)" class="carousel-page" @oncarouselpagescroll="async _ => await ScrollToPage(pageIndex, false)">
 
             @*Title*@
             <h1 class="carousel-page-title">@carouselPage.Title</h1>
@@ -103,7 +108,7 @@
         int indicatorIndex = i;
 
         @*Carousel Indicator*@
-        <span class="material-symbols-outlined" @onclick="_ => ScrollToPage(indicatorIndex)">
+        <span class="material-symbols-outlined" @onclick="async _ => await ScrollToPage(indicatorIndex)">
             @(i == CurrentIndex ? "radio_button_checked" : "radio_button_unchecked")
         </span>
     }
