@@ -58,6 +58,13 @@ body {
 
 // Content
 .content {
+	display: flex;
+	flex-flow: row nowrap;
 	background: linear-gradient(to bottom, rgba($wave-color, mix-opacity($wave-high-opacity, $wave-low-opacity)) 25%, $wave-color);
 	padding: 0 1.5rem 3rem;
+
+	article {
+		position: relative;
+		width: 100%;
+	}
 }

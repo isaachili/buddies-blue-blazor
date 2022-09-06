@@ -1,0 +1,43 @@
+﻿@using Buddies.App.Events
+@using Microsoft.AspNetCore.Components.Rendering
+
+@*Carousel*@
+<div class="carousel">
+
+    @for (int i = 0; i < Pages.Count(); i++)
+    {
+        int pageIndex = i;
+        var carouselPage = Pages.ElementAt(pageIndex);
+
+        RenderFragment fragment = builder =>
+        {
+            builder.OpenComponent(0, carouselPage.ComponentType);
+            builder.CloseComponent();
+        };
+
+        @*Carousel Page*@
+        <div id="@CreatePageId(pageIndex)" class="carousel-page" @oncarouselpagescroll="async _ => await ScrollToPage(pageIndex, false)">
+
+            @*Title*@
+            <h1 class="carousel-page-title">@carouselPage.Title</h1>
+
+            @*Render Component Fragment*@
+            @fragment
+
+        </div>
+    }
+
+</div>
+
+@*Carousel Indicators*@
+<div class="carousel-indicators">
+    @for (int i = 0; i < Pages.Count(); i++)
+    {
+        int indicatorIndex = i;
+
+        @*Carousel Indicator*@
+        <span class="material-symbols-outlined" @onclick="async _ => await ScrollToPage(indicatorIndex)">
+            @(i == CurrentIndex ? "radio_button_checked" : "radio_button_unchecked")
+        </span>
+    }
+</div>
