@@ -38,13 +38,21 @@ body {
 .waves {
 	position: relative;
 	height: $wave-height;
+	overflow: hidden;
 
 	.wave-high, .wave-low {
 		position: absolute;
 		left: 0;
 		right: 0;
-		bottom: 0;
 		fill: $wave-color;
+
+		@media (orientation: portrait) {
+			bottom: 0;
+		}
+
+		@media (orientation: landscape) {
+			top: 0;
+		}
 	}
 
 	.wave-high {
