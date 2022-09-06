@@ -1,81 +1,7 @@
 ﻿@using Buddies.App.Events
 @using Microsoft.AspNetCore.Components.Rendering
 
-@implements IDisposable
-
-@code {
-
-    public class Page
-    {
-        public string Title { get; set; }
-
-        public Type ComponentType { get; init; }
-    }
-
-    public class Page<TComponent> : Page
-    {
-        public Page()
-        {
-            ComponentType = typeof(TComponent);
-        }
-    }
-
-    private string CarouselId { get; } = Guid.NewGuid().ToString("N");
-
-    [Inject]
-    public IJSRuntime Runtime { get; set; }
-
-    [Parameter]
-    public IEnumerable<Page> Pages { get; set; }
-
-    [Parameter]
-    public int CurrentIndex { get; set; }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        await base.OnAfterRenderAsync(firstRender);
-
-        if (!firstRender)
-        {
-            return;
-        }
-
-        for (int i = 0; i < Pages.Count(); i++)
-        {
-            // Start observing carousel pages
-            await Runtime.InvokeVoidAsync("observeInteraction", CreatePageId(i));
-        }
-    }
-
-    void IDisposable.Dispose()
-    {
-        for (int i = 0; i < Pages.Count(); i++)
-        {
-            // Stop observing carousel pages
-            _ = Runtime.InvokeVoidAsync("unobserveInteraction", CreatePageId(i));
-        }
-    }
-
-    private string CreatePageId(int index)
-    {
-        return $"{CarouselId}-p{index}";
-    }
-
-    private async Task ScrollToPage(int index, bool shouldScroll = true)
-    {
-        // Update page index
-        CurrentIndex = index;
-
-        if (!shouldScroll)
-        {
-            return;
-        }
-
-        // Scroll to page
-        await Runtime.InvokeVoidAsync("scrollIntoView", CreatePageId(index));
-    }
-}
-
+@*Carousel*@
 <div class="carousel">
 
     @for (int i = 0; i < Pages.Count(); i++)
@@ -103,6 +29,7 @@
 
 </div>
 
+@*Carousel Indicators*@
 <div class="carousel-indicators">
     @for (int i = 0; i < Pages.Count(); i++)
     {
