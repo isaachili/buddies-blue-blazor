@@ -5,8 +5,6 @@ namespace Buddies.App.Components;
 
 public partial class Carousel : IAsyncDisposable
 {
-	private bool _disposed;
-
 	#region Carousel Page
 
 	/// <summary>
@@ -39,6 +37,8 @@ public partial class Carousel : IAsyncDisposable
 
 	#endregion
 
+	private bool _disposed;
+
 	#region Properties
 
 	/// <summary>
@@ -50,7 +50,7 @@ public partial class Carousel : IAsyncDisposable
 	/// JavaScript runtime service
 	/// </summary>
 	[Inject]
-	public IJSRuntime Runtime { get; set; }
+	internal IJSRuntime Runtime { get; set; }
 
 	/// <summary>
 	/// Pages parameter
