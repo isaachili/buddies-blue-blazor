@@ -9,13 +9,26 @@ public partial class Carousel : IAsyncDisposable
 
 	#region Carousel Page
 
+	/// <summary>
+	/// Carousel page
+	/// </summary>
 	public class Page
 	{
+		/// <summary>
+		/// Title of the carousel page
+		/// </summary>
 		public string Title { get; set; }
 
+		/// <summary>
+		/// Component/view type
+		/// </summary>
 		public Type ComponentType { get; init; }
 	}
 
+	/// <summary>
+	/// Carousel page
+	/// </summary>
+	/// <typeparam name="TComponent">Component/view type</typeparam>
 	public class Page<TComponent> : Page
 	{
 		public Page()
@@ -28,14 +41,26 @@ public partial class Carousel : IAsyncDisposable
 
 	#region Properties
 
+	/// <summary>
+	/// Identifier
+	/// </summary>
 	private string CarouselId { get; } = Guid.NewGuid().ToString("N");
 
+	/// <summary>
+	/// JavaScript runtime service
+	/// </summary>
 	[Inject]
 	public IJSRuntime Runtime { get; set; }
 
+	/// <summary>
+	/// Pages parameter
+	/// </summary>
 	[Parameter]
 	public IEnumerable<Page> Pages { get; set; }
 
+	/// <summary>
+	/// Current page index parameter
+	/// </summary>
 	[Parameter]
 	public int CurrentIndex { get; set; }
 
@@ -59,6 +84,10 @@ public partial class Carousel : IAsyncDisposable
 		}
 	}
 
+	/// <summary>
+	/// Unsubscribes to any interaction observers and disposes of the component.
+	/// </summary>
+	/// <param name="disposing">Disposes of the component when <see langword="true"/></param>
 	public async ValueTask DisposeAsync(bool disposing)
 	{
 		// Object has already been disposed
@@ -93,11 +122,21 @@ public partial class Carousel : IAsyncDisposable
 
 	#endregion
 
+	/// <summary>
+	/// Generates a page identifier based upon the page's index.
+	/// </summary>
+	/// <param name="index">Page index</param>
+	/// <returns>Page identifier</returns>
 	private string CreatePageId(int index)
 	{
 		return $"{CarouselId}-p{index}";
 	}
 
+	/// <summary>
+	/// Scrolls to the selected page.
+	/// </summary>
+	/// <param name="index">Page index</param>
+	/// <param name="shouldScroll">Scrolls the selected page into the view when <see langword="true"/></param>
 	private async Task ScrollToPage(int index, bool shouldScroll = true)
 	{
 		// Update page index
