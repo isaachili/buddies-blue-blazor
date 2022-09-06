@@ -3,8 +3,10 @@ using Microsoft.JSInterop;
 
 namespace Buddies.App.Components;
 
-public partial class Carousel : IDisposable
+public partial class Carousel : IAsyncDisposable
 {
+	private bool _disposed;
+
 	#region Carousel Page
 
 	public class Page
@@ -50,20 +52,43 @@ public partial class Carousel : IDisposable
 			return;
 		}
 
+		// Start observing carousel pages
 		for (int i = 0; i < Pages.Count(); i++)
 		{
-			// Start observing carousel pages
 			await Runtime.InvokeVoidAsync(JSRuntimeFunctions.ObserveInteraction, CreatePageId(i));
 		}
 	}
 
-	public void Dispose()
+	public async ValueTask DisposeAsync(bool disposing)
 	{
+		// Object has already been disposed
+		if (_disposed)
+		{
+			return;
+		}
+
+		if (!disposing)
+		{
+			_disposed = true;
+			return;
+		}
+
+		// Stop observing carousel pages
 		for (int i = 0; i < Pages.Count(); i++)
 		{
-			// Stop observing carousel pages
-			_ = Runtime.InvokeVoidAsync(JSRuntimeFunctions.UnobserveInteraction, CreatePageId(i));
+			await Runtime.InvokeVoidAsync(JSRuntimeFunctions.UnobserveInteraction, CreatePageId(i));
 		}
+
+		_disposed = true;
+	}
+
+	public async ValueTask DisposeAsync()
+	{
+		// Dispose
+		await DisposeAsync(true);
+
+		// Suppress finalizer
+		GC.SuppressFinalize(this);
 	}
 
 	#endregion
